@@ -1,8 +1,20 @@
 const express = require('express')
-const PORT = 5000
+const dotenv = require('dotenv').config()
+const { errorHandler } = require('./middleware/errorMiddleware')
+const PORT = process.env.PORT || 8000
 
 const app = express()
 
-app.listen(PORT)
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
+app.get('/', (req, res) => {
+    res.status(200).json({message:'hello, welcome to support system api!'})
+})
+
+//Routes
+app.use('/api/users', require('./routes/userRoutes'))
+
+app.use(errorHandler)
 
 app.listen(PORT, () => console.log(`server started on port ${PORT}`))
