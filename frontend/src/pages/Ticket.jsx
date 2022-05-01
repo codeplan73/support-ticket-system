@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { getTicket, closeTicket } from '../features/tickets/ticketSlice'
-import { getNotes, createNote, notesReset} from '../features/notes/noteSlice'
+import { getNotes, createNote} from '../features/notes/noteSlice'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 import NoteItem from '../components/NoteItem'
@@ -14,7 +14,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 const Ticket = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [noteText, setNoteText] = useState('')
-  const { ticket, isLoading, isSuccess, isError, message } = useSelector(
+  const { ticket, isLoading, isError, message } = useSelector(
     (state) => state.ticket
   )
 
